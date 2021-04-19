@@ -1,3 +1,6 @@
+#본 코드는 Bismark CpG report 파일로부터 여러개의 sample을 position별로 통합하고 filtering 조건을 부여하여 유의미한 methylation정보를 통합하여 경향성을 파악하는 코드이다
+#Output으로는 filtering 전, 후, ref Bed file로 부터 CpG site를 통합하여 값들을 나타낸 파일(Sum + Mean), Tendency file이 나온다
+
 import sys
 import time
 import numpy as np
