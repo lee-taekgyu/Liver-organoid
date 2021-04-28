@@ -1,8 +1,8 @@
 import sys
 import time
 
-with open(sys.argv[1] + '_Tendency.txt', 'w') as tendency:
-	with open(sys.argv[1] + '_mean.txt', 'r') as handle:
+with open(sys.argv[1].split('_')[0] + '_Tendency.txt', 'w') as tendency:
+	with open(sys.argv[1], 'r') as handle:
 		for line in handle:
 			line1 = line.strip()
 			if '\t' in line:
@@ -48,7 +48,7 @@ Chromosome.extend(['chrX', 'chrY'])
 
 for chromosome in Chromosome:
 	cpg_dic = {}
-	with open(sys.argv[1], 'r') as cpg:
+	with open(sys.argv[1].split('_')[0], 'r') as cpg:
 		for line in cpg:
 			line = line.strip().split('\t')
 			Chr = line[0]
@@ -110,7 +110,7 @@ with open(sys.argv[1].split('_')[0] + '_Gene.txt', 'r') as handle:
                                 handle1.write(Chr + '\t' + Early + '\t' + Tissue + '\t' + Late + '\t' + rest + '\n')	
 	
             
-with open(sys.argv[1], 'r') as bed_file, open(sys.argv[1].split('_')[0] + '_Plus_group.txt', 'w') as plus, open(sys.argv[1].split('_')[0] + '_Minus_group.txt', 'w') as minus, open(sys.argv[1].split('_')[0] + '_Zero_group.txt' ,'w') as zero , open(sys.argv[1].split('_')[0] + '_Increasing_group.txt', 'w') as increase, open(sys.argv[1].split('_')[0] + '_Decreasing_group.txt', 'w') as decrease:
+with open(sys.argv[1].split('_')[0] + '_Gene.txt', 'r') as bed_file, open(sys.argv[1].split('_')[0] + '_Plus_group.txt', 'w') as plus, open(sys.argv[1].split('_')[0] + '_Minus_group.txt', 'w') as minus, open(sys.argv[1].split('_')[0] + '_Zero_group.txt' ,'w') as zero , open(sys.argv[1].split('_')[0] + '_Increasing_group.txt', 'w') as increase, open(sys.argv[1].split('_')[0] + '_Decreasing_group.txt', 'w') as decrease:
 	for line in bed_file:
 		line = line.strip()
 		Character = line.split('\t')
