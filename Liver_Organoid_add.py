@@ -88,6 +88,27 @@ for chromosome in Chromosome:
 						annotation.write(chromosome + '\t' + cpg_key.split(' ')[0] + '\t' + cpg_key.split(' ')[1] + '\t' + cpg_key.split(' ')[2] + '\t' +  pos_dic[pos_key] + '\n')
 						check.append(pos_dic[pos_key])
             
+with open(sys.argv[1].split('_')[0] + '_Gene.txt', 'r') as handle:
+                with open(sys.argv[1].split('_')[0] + '_Gene_percent.txt', 'w') as handle1:
+                        for line in handle:
+                                line = line.strip().split('\t')
+                                Chr = line[0:4]
+                                Chr = ','.join(Chr)
+                                Chr = Chr.replace(',', '\t')
+                                Early = line[4:6]
+                                Early = Early[0],Early[1], str(round(float(Early[0])/(float(Early[0]) + float(Early[1]))*100,2))
+                                Early = ';'.join(Early)
+                                Tissue = line[6:8]
+                                Tissue= Tissue[0],Tissue[1], str(round(float(Tissue[0])/(float(Tissue[0]) + float(Tissue[1]))*100,2))
+                                Tissue = ';'.join(Tissue)
+                                Late = line[8:10]
+                                Late = Late[0],Late[1], str(round(float(Late[0])/(float(Late[0]) + float(Late[1]))*100,2))
+                                Late = ';'.join(Late)
+                                rest = line[10:]
+                                rest = ','.join(rest)
+                                rest = rest.replace(',','\t')
+                                handle1.write(Chr + '\t' + Early + '\t' + Tissue + '\t' + Late + '\t' + rest + '\n')	
+	
             
 with open(sys.argv[1], 'r') as bed_file, open(sys.argv[1].split('_')[0] + '_Plus_group.txt', 'w') as plus, open(sys.argv[1].split('_')[0] + '_Minus_group.txt', 'w') as minus, open(sys.argv[1].split('_')[0] + '_Zero_group.txt' ,'w') as zero , open(sys.argv[1].split('_')[0] + '_Increasing_group.txt', 'w') as increase, open(sys.argv[1].split('_')[0] + '_Decreasing_group.txt', 'w') as decrease:
 	for line in bed_file:
